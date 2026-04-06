@@ -8,29 +8,17 @@
     <pre id="output"></pre>
     
     <script>
-        // Get the full path (e.g., "/PlainText/hi-how-are-you")
-        let fullPath = window.location.pathname;
-        
-        // Remove the base folder name "/PlainText/" from the beginning
-        let basePath = "/PlainText/";
-        let cleanPath = fullPath.startsWith(basePath) 
-            ? fullPath.substring(basePath.length) 
-            : fullPath.substring(1);
-        
-        // Remove trailing slash if present
-        if (cleanPath.endsWith("/")) {
-            cleanPath = cleanPath.slice(0, -1);
-        }
+        // Get everything after the # in the URL
+        let hash = window.location.hash.substring(1); // removes the #
         
         // Convert dashes to spaces
-        let textResponse = cleanPath.replace(/-/g, ' ');
+        let textResponse = hash.replace(/-/g, ' ');
         
-        // If nothing after the folder name, show default message
+        // If nothing after #, show default
         if (textResponse === "") {
             textResponse = "Hello world";
         }
         
-        // Display as plain text
         document.getElementById('output').innerText = textResponse;
     </script>
 </body>
