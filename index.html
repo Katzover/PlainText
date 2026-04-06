@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Plain Text Responder</title>
+</head>
+<body>
+    <pre id="output"></pre>
+    
+    <script>
+        // Get the path from URL (e.g., "/hi-how-are-you-doing")
+        let path = window.location.pathname;
+        
+        // Remove the leading slash
+        let cleanPath = path.substring(1);
+        
+        // Convert dashes to spaces
+        let textResponse = cleanPath.replace(/-/g, ' ');
+        
+        // If path is empty or just "/", show default message
+        if (textResponse === "") {
+            textResponse = "Hello world";
+        }
+        
+        // Display as plain text
+        document.getElementById('output').innerText = textResponse;
+    </script>
+</body>
+</html>
