@@ -8,16 +8,24 @@
     <pre id="output"></pre>
     
     <script>
-        // Get the path from URL (e.g., "/hi-how-are-you-doing")
-        let path = window.location.pathname;
+        // Get the full path (e.g., "/PlainText/hi-how-are-you")
+        let fullPath = window.location.pathname;
         
-        // Remove the leading slash
-        let cleanPath = path.substring(1);
+        // Remove the base folder name "/PlainText/" from the beginning
+        let basePath = "/PlainText/";
+        let cleanPath = fullPath.startsWith(basePath) 
+            ? fullPath.substring(basePath.length) 
+            : fullPath.substring(1);
+        
+        // Remove trailing slash if present
+        if (cleanPath.endsWith("/")) {
+            cleanPath = cleanPath.slice(0, -1);
+        }
         
         // Convert dashes to spaces
         let textResponse = cleanPath.replace(/-/g, ' ');
         
-        // If path is empty or just "/", show default message
+        // If nothing after the folder name, show default message
         if (textResponse === "") {
             textResponse = "Hello world";
         }
